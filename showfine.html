@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">fine</th>
+            <th scope="col">month</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+       
+        </tbody>
+      </table>
+</body>
+<script>
+const tbody = document.querySelector('#tbody');
+
+const getdata = async () => {
+  const endpoint = "http://localhost:8080/findFine/1",
+        response = await fetch(endpoint),
+        data = await response.json();
+       
+
+ data.forEach(countryObj => {
+    let {id, bookname, status, month} = countryObj;
+    tbody.innerHTML += `<tr>
+        <td>${id}</td>
+        <td>${bookname}</td>
+        <td>${status}</td>
+        <td>${month}</td>]
+    </tr>`;
+ });
+
+}
+getdata();
+</script>
+</html>
